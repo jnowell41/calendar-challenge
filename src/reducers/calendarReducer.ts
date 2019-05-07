@@ -1,7 +1,58 @@
 import { ThunkAction } from "redux-thunk";
+import { string } from "prop-types";
+import { isTemplateLiteral } from "@babel/types";
+
+export interface IEveryone {
+  everyoneDeclinedDismissed: number;
+}
+export interface IPrivate {
+  private: IEveryone;
+}
+
+export interface IEmail {
+  email: string;
+}
+export interface IOrganise {
+  email: string;
+  displayName: string;
+  self: boolean;
+}
+export interface IStart {
+  date: string;
+}
+export interface IEnd {
+  date: string;
+}
+export interface IItems {
+  kind: string;
+  etag: string;
+  id: string;
+  htmllink: string;
+  created: string;
+  updated: string;
+  summary: string;
+  creator: IEmail;
+  organiser: IOrganise;
+  start: IStart;
+  end: IEnd;
+  transparency: string;
+  iCalUID: string;
+  sequence: number;
+  extendedProperties: IPrivate;
+}
 
 // ICalendarEvents interface
-export interface ICalendarEvents {}
+export interface ICalendarEvents {
+  kind: string;
+  etag: string;
+  summary: string;
+  updated: string;
+  timeZone: string;
+  accessRole: string;
+  defaultReminders: [];
+  nextSyncToken: string;
+  items: IItems[];
+}
 
 // action types
 export const FETCH_CALENDAR_EVENTS = "FETCH_CALENDAR_EVENTS";

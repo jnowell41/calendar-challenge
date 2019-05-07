@@ -14,6 +14,6 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(...middlewares))
 );
 
-// store.dispatch<any>(fetchCalendar());
+store.dispatch<any>(fetchCalendar());
 
 export default store;
