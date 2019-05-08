@@ -3,37 +3,39 @@ import styles from "./dayCard.module.scss";
 import { connect } from "react-redux";
 import { IStore } from "../../reducers";
 import { fetchCalendar } from "../../reducers/calendarReducer";
-// import { getCalendarEvents } from "../../reducers/calendarReducer";
 import { ICalendarEvents } from "../../reducers/calendarReducer";
 import Tile from "../tile";
 
-export interface IProps {}
+export interface IReactProps {}
 export interface IState {}
 export interface IReduxProps {
-  fetchCalender: () => void;
-  calenderEvents: ICalendarEvents[];
+  fetchCalendar: () => void;
+  calendarEvents: ICalendarEvents[];
 }
 
-class DayCard extends React.Component<IProps & IReduxProps, IState> {
+class DayCard extends React.Component<IReactProps & IReduxProps, IState> {
   public componentDidMount = () => {
-    this.props.fetchCalender();
+    this.props.fetchCalendar();
   };
 
   public render() {
     return (
-      <div className={styles.calendarCard}>
-        {this.props.calenderEvents.map((item, index) => {
-          <Tile key={index} cards={item} />;
-        })}
-      </div>
+      <React.Fragment>
+        <div className={styles.calendarCard}>
+          <div className={styles.innerCard}>
+            {this.props.calendarEvents.map((calendarEvent, index) => (
+              <Tile key={index} calendarEvent={calendarEvent} />
+            ))}
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = (state: IStore, props: IReduxProps) => {
+const mapStateToProps = (state: IStore, props: IReactProps) => {
   return {
-    calendarEvents: state.calendar.calendarEvents,
-    ...props
+    calendarEvents: state.calendar.calendarEvents
   };
 };
 

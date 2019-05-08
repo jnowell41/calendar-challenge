@@ -19,11 +19,15 @@ export interface IOrganise {
 }
 export interface IStart {
   date: string;
+  dateTime: string;
 }
 export interface IEnd {
   date: string;
+  dateTime: string;
 }
-export interface IItems {
+
+// ICalendarEvents interface
+export interface ICalendarEvents {
   kind: string;
   etag: string;
   id: string;
@@ -32,26 +36,13 @@ export interface IItems {
   updated: string;
   summary: string;
   creator: IEmail;
-  organiser: IOrganise;
+  organizer: IOrganise;
   start: IStart;
   end: IEnd;
   transparency: string;
   iCalUID: string;
   sequence: number;
   extendedProperties: IPrivate;
-}
-
-// ICalendarEvents interface
-export interface ICalendarEvents {
-  kind: string;
-  etag: string;
-  summary: string;
-  updated: string;
-  timeZone: string;
-  accessRole: string;
-  defaultReminders: [];
-  nextSyncToken: string;
-  items: IItems[];
 }
 
 // action types
